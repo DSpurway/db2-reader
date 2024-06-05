@@ -10,6 +10,10 @@ LABEL "maintainer"="Andrew Laidlaw [andrew.laidlaw@uk.ibm.com]"
 LABEL "version"="1.1"
 LABEL "description"="Microservice to present data in IBM Db2 as API endpoints."
 
+RUN cd /etc/yum.repos.d/
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
 # runtime support to enable npm build capabilities
 RUN yum update -y && yum -y install libstdc++ make gcc-c++ numactl-devel
 
